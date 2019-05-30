@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 public class FragmentTalleres extends Fragment {
@@ -24,6 +25,9 @@ public class FragmentTalleres extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    ArrayList<ApiItem> apiItems;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -58,6 +62,10 @@ public class FragmentTalleres extends Fragment {
 
         HiloAPI hilo = new HiloAPI();
         hilo.execute("https://jdarestaurant.firebaseio.com/talleres.json");
+        apiItems = new ArrayList<>();
+
+        apiItems.add(new ApiItem("Seat", "Leon"));
+        apiItems.add(new ApiItem("Opel", "Corsa"));
 
         return view;
     }

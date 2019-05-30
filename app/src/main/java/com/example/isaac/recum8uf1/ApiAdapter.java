@@ -11,26 +11,22 @@ import java.util.ArrayList;
 public class ApiAdapter extends RecyclerView.Adapter<ApiAdapter.ApiViewHolder> {
 
 
-
-
-
     @NonNull
     @Override
     public ApiAdapter.ApiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.api_item, null, false);
 
-
         return new ApiViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ApiAdapter.ApiViewHolder apiViewHolder, int i) {
+    public void onBindViewHolder(@NonNull ApiAdapter.ApiViewHolder apiViewHolder, int position) {
 
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 2;
     }
 
     public class ApiViewHolder extends RecyclerView.ViewHolder {
