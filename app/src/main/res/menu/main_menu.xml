@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menuPlatosID"
+    android:title="Ver platos"
+    android:icon="@drawable/ic_launcher_foreground"
+    app:showAsAction="always" />
+
+    <item android:id="@+id/menuHacerReservaID"
+        android:title="Hacer reserva"
+        android:icon="@drawable/ic_launcher_foreground"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/menuVerReservaID"
+        android:title="Ver reservas"
+        android:icon="@drawable/ic_launcher_foreground"
+        app:showAsAction="always" />
+
+</menu>
