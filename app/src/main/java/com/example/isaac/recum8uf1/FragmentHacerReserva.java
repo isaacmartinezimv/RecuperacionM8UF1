@@ -104,7 +104,7 @@ public class FragmentHacerReserva extends Fragment {
         Toast.makeText(getActivity(), "Comentario Añadido", Toast.LENGTH_SHORT).show();
         clearEditFields();
     }
-    
+
     public void clearEditFields(){
         SystemClock.sleep(500);
         edtComentarios.getText().clear();

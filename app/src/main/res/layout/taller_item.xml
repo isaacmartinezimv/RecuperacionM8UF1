@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:layout_marginBottom="10dp"
+            android:text="Valoracion: " />
+
+        <TextView
+            android:id="@+id/verValoracionesID"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:text="hh"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textAlignment="viewEnd"
+            android:text="Comentario:"/>
+
+        <TextView
+            android:id="@+id/verComentariosID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ddd"/>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -2,21 +2,19 @@ package com.example.isaac.recum8uf1;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FragmentTalleres.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FragmentTalleres#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class FragmentTalleres extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,14 +31,6 @@ public class FragmentTalleres extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentTalleres.
-     */
     // TODO: Rename and change types and number of parameters
     public static FragmentTalleres newInstance(String param1, String param2) {
         FragmentTalleres fragment = new FragmentTalleres();
@@ -64,7 +54,12 @@ public class FragmentTalleres extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_talleres, container, false);
+        View view = inflater.inflate(R.layout.fragment_talleres, container, false);
+
+        HiloAPI hilo = new HiloAPI();
+        hilo.execute("https://jdarestaurant.firebaseio.com/talleres.json");
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -91,18 +86,44 @@ public class FragmentTalleres extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    class HiloAPI extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            // Declaramos una variable de tipo HttpURLConection, una de tipo URL y una de tipo string
+            HttpURLConnection connection;
+            URL url;
+            connection = null;
+            String result;
+            result ="";
+
+            // Intentamos realizar la conexión a API obteniendo el link que le hemos pasado a esta clase por parametro mediante strings[0]
+            try{
+                url = new URL(strings[0]);
+                connection = (HttpURLConnection) url.openConnection();
+
+                //Leemos los datos de entrada
+                InputStream inputStream = connection.getInputStream();
+
+
+                // Hacemos un bucle para leer y guardar caracter a caracter los datos de entrada en nuestra variable “result”
+                int data = inputStream.read();
+                while(data != -1) {
+                    result += (char) data;
+                    data = inputStream.read();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // Una vez tenemos todos los datos, los retornamos
+            Log.i("RESULT", result);
+            return result;
+        }
     }
 }
